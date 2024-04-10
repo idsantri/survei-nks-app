@@ -7,7 +7,8 @@
 					<v-col>
 						<v-sheet class="">
 							<v-text-field
-								label="NKS"
+								:rules="[(value) => !!value || 'Harus diisi!']"
+								label="NKS*"
 								variant="outlined"
 								v-model="input.nama"
 							></v-text-field>
@@ -70,6 +71,7 @@
 					label="Catatan"
 					variant="outlined"
 					v-model="input.catatan"
+					hint="aa"
 				></v-text-field>
 			</v-card-text>
 			<v-card-actions>
@@ -77,10 +79,13 @@
 					:disabled="loading || !input.id"
 					class="me-auto"
 					@click="onDelete"
+					variant="outlined"
 				>
 					Hapus
 				</v-btn>
-				<v-btn :disabled="loading" type="submit">Simpan</v-btn>
+				<v-btn variant="outlined" :disabled="loading" type="submit">
+					Simpan
+				</v-btn>
 			</v-card-actions>
 		</v-form>
 	</v-card>

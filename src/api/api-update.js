@@ -1,9 +1,9 @@
 import api from '.';
 import { toArray } from '@/utils/array-object';
-import { notifyError, notifySuccess } from '@/utils/notify';
+import { notifyConfirm, notifyError, notifySuccess } from '@/utils/notify';
 import token from './token';
 
-async function apiUpdate({ endPoint, data, loading, notify, params }) {
+async function updateData({ endPoint, data, loading, notify, params }) {
 	api.defaults.headers.common['Authorization'] = `Bearer ${token()}`;
 	try {
 		if (loading && typeof loading.value === 'boolean') loading.value = true;
@@ -21,6 +21,25 @@ async function apiUpdate({ endPoint, data, loading, notify, params }) {
 	} finally {
 		if (loading && typeof loading.value === 'boolean')
 			loading.value = false;
+	}
+}
+
+async function apiUpdate({
+	endPoint,
+	data,
+	confirm = true,
+	message = '<span style="color:red">Update data ini?</span>',
+	loading,
+	notify = true,
+	params,
+}) {
+	if (confirm) {
+		const confirmed = await notifyConfirm(message);
+		return confirmed
+			? await updateData({ endPoint, data, loading, notify, params })
+			: false;
+	} else {
+		return updateData({ endPoint, data, loading, notify, params });
 	}
 }
 

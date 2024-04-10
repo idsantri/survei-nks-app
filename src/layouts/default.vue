@@ -1,13 +1,25 @@
 <template>
 	<v-app>
 		<v-layout class="rounded rounded-md">
-			<v-app-bar color="orange" density="compact">
-				<v-app-bar-title>Survei NKS</v-app-bar-title>
+			<v-app-bar class="bg-orange-accent-1" density="compact">
+				<v-app-bar-title>
+					<v-btn
+						class="text-none"
+						color="orange-accent-1"
+						to="/nks"
+						variant="text"
+					>
+						<span class="text-brown-darken-4">
+							Survei NKS PW-IASS Bangkalan
+						</span>
+					</v-btn>
+				</v-app-bar-title>
 
 				<template v-slot:append>
 					<v-btn
 						v-show="isAuthenticate && !isAuthRoutes"
-						class="text-none font-weight-regular bg-red"
+						class="text-none font-weight-regular me-4"
+						variant="outlined"
 						@click="logout"
 					>
 						<v-icon icon="mdi-logout" />
@@ -30,12 +42,18 @@ import auth from '@/stores/auth';
 import { useRouter, useRoute } from 'vue-router';
 import NotifySnackbar from '@/components/NotifySnackbar.vue';
 import NotifyConfirm from '@/components/NotifyConfirm.vue';
+import { notifyConfirm as dialog } from '@/utils/notify';
 
 const router = useRouter();
 const route = useRoute();
-function logout() {
-	auth().$reset();
-	router.push('/login');
+
+async function logout() {
+	const confirmed = await dialog('Keluar dari aplikasi?');
+	if (confirmed) {
+		auth().$reset();
+		router.push('/login');
+	}
+	return;
 }
 
 const authRoutes = ['/register', '/login', '/forgot', '/reset', '/verify'];

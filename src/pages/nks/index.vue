@@ -1,8 +1,10 @@
 <template>
-	<v-card class="mx-auto mt-10" max-width="600" :loading="loading">
+	<v-card class="mx-auto ma-6" max-width="600" :loading="loading">
 		<v-card-actions class="d-flex bg-orange">
 			<div class="text-subtitle-1 pl-3 me-auto">Daftar NKS</div>
-			<v-btn @click="newNks"> Baru </v-btn>
+			<v-btn @click="newNks" variant="elevated" color="orange-darken-4">
+				Baru
+			</v-btn>
 		</v-card-actions>
 		<v-expansion-panels>
 			<v-expansion-panel v-for="(n, i) in nks" :key="i">
@@ -49,11 +51,22 @@
 								</tbody>
 							</v-table>
 						</v-card-item>
-						<v-card-actions class="d-flex bg-surface-variant">
-							<v-btn class="me-auto" @click="editNks(n)">
+						<v-card-actions class="d-flex bg-orange-accent-1">
+							<v-btn
+								class="me-auto"
+								@click="editNks(n)"
+								variant="outlined"
+							>
 								Edit
 							</v-btn>
-							<v-btn :to="`/nks/${n.id}/survei`"> Survei </v-btn>
+							<v-btn
+								:to="`/nks/${n.id}/survei`"
+								variant="elevated"
+								color="orange-darken-4"
+								class="text-none"
+							>
+								Survei
+							</v-btn>
 						</v-card-actions>
 					</v-card>
 				</v-expansion-panel-text>
