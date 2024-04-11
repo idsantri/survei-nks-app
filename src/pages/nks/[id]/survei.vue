@@ -361,9 +361,12 @@ onMounted(async () => {
 });
 
 const getTotal = (lokasi) =>
-	survei.value.reduce(
-		(acc, item) => acc + parseInt(item[lokasi]) * parseInt(item.poin),
-		0
-	);
+	survei.value.length > 0
+		? survei.value.reduce(
+				(acc, item) =>
+					acc + parseInt(item[lokasi]) * parseInt(item.poin),
+				0
+		  )
+		: 0;
 </script>
 <style lang=""></style>
