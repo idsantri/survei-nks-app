@@ -1,43 +1,48 @@
 <template lang="">
-	<div class="d-flex align-center justify-center mt-10">
-		<v-card width="400" :loading="loading">
+	<div class="d-flex align-center justify-center mt-16">
+		<v-card
+			width="400"
+			:loading="loading"
+			class="bg-orange-lighten-4 text-orange-darken-4"
+			elevation="6"
+		>
 			<v-card-item>
 				<v-card-title class="text-center">Login</v-card-title>
 
-				<v-card-subtitle class="text-center"
-					>Survei NKS PW-IASS Bangkalan</v-card-subtitle
-				>
+				<v-card-subtitle class="text-center font-weight-medium">
+					Survei NKS PW-IASS Bangkalan
+				</v-card-subtitle>
 			</v-card-item>
 
 			<v-card-text>
-				<v-form @submit.prevent="onSubmit">
+				<form @submit.prevent="onSubmit">
 					<v-text-field
 						v-model="input.login"
-						:rules="[
-							(value) => {
-								if (value) return true;
-								return 'You must enter a first name.';
-							},
-						]"
+						required
 						label="Login"
+						variant="outlined"
+						bg-color="orange-lighten-5"
 					>
 					</v-text-field>
 					<v-text-field
 						v-model="input.password"
-						:rules="[
-							(value) => {
-								if (value) return true;
-								return 'You must enter a first name.';
-							},
-						]"
+						required
 						label="Password"
 						type="password"
+						variant="outlined"
+						bg-color="orange-lighten-5"
 					>
 					</v-text-field>
-					<v-btn class="mt-2" type="submit" block :disable="loading"
-						>Login</v-btn
+					<v-btn
+						class="text-none text-orange-lighten-5"
+						color="orange"
+						type="submit"
+						block
+						:disable="loading"
 					>
-				</v-form>
+						Login
+					</v-btn>
+				</form>
 			</v-card-text>
 		</v-card>
 	</div>

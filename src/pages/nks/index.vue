@@ -1,6 +1,6 @@
 <template>
 	<v-card class="mx-auto ma-6" max-width="600" :loading="loading">
-		<v-card-actions class="d-flex bg-orange">
+		<v-card-actions class="d-flex bg-orange-accent-1 text-orange-darken-4">
 			<div class="text-subtitle-1 pl-3 me-auto">Daftar NKS</div>
 			<v-btn @click="newNks" variant="elevated" color="orange-darken-4">
 				Baru
@@ -18,44 +18,41 @@
 								<tbody>
 									<tr>
 										<td>Tanggal NKS</td>
-										<td>{{ n.tanggal_nks_m }}</td>
+										<td>
+											{{
+												formatDateShort(n.tanggal_nks_m)
+											}}
+											|
+											{{ formatHijri(n.tanggal_nks_h) }}
+										</td>
 									</tr>
 									<tr>
 										<td>Tanggal Survei</td>
-										<td>{{ n.tanggal_survei_m }}</td>
-									</tr>
-									<tr>
-										<td>Lokasi 1</td>
-										<td>{{ n.lokasi_1 }}</td>
-									</tr>
-									<tr>
-										<td>Lokasi 2</td>
-										<td>{{ n.lokasi_2 }}</td>
-									</tr>
-									<tr>
-										<td>Lokasi 3</td>
-										<td>{{ n.lokasi_3 }}</td>
-									</tr>
-									<tr>
-										<td>Peserta Survei</td>
-										<td>{{ n.peserta_survei }}</td>
+										<td>
+											{{
+												formatDateShort(
+													n.tanggal_survei_m
+												)
+											}}
+											|
+											{{
+												formatHijri(n.tanggal_survei_h)
+											}}
+										</td>
 									</tr>
 									<tr>
 										<td>Keputusan</td>
 										<td>{{ n.keputusan }}</td>
-									</tr>
-									<tr>
-										<td>Catatan</td>
-										<td>{{ n.catatan }}</td>
 									</tr>
 								</tbody>
 							</v-table>
 						</v-card-item>
 						<v-card-actions class="d-flex bg-orange-accent-1">
 							<v-btn
-								class="me-auto"
+								class="me-auto text-none"
 								@click="editNks(n)"
 								variant="outlined"
+								color="orange-darken-4"
 							>
 								Edit
 							</v-btn>
@@ -63,7 +60,7 @@
 								:to="`/nks/${n.id}/survei`"
 								variant="elevated"
 								color="orange-darken-4"
-								class="text-none"
+								class="text-none text-orange-lighten-5"
 							>
 								Survei
 							</v-btn>
@@ -74,7 +71,7 @@
 		</v-expansion-panels>
 	</v-card>
 	<!-- <pre>{{ nks }}</pre> -->
-	<v-dialog v-model="dialogCrud" max-width="800">
+	<v-dialog v-model="dialogCrud" max-width="600">
 		<crud-nks
 			:data="inputNks"
 			@success-submit="loadData"
@@ -87,6 +84,8 @@
 import apiGet from '@/api/api-get';
 import { onMounted, ref } from 'vue';
 import CrudNks from '@/components/CrudNks';
+import { formatDateShort } from '@/utils/format-date';
+import { formatHijri } from '@/utils/hijri';
 
 const loading = ref(false);
 const nks = ref([]);

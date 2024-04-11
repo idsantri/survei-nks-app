@@ -4,12 +4,14 @@
 			<v-app-bar class="bg-orange-accent-1" density="compact">
 				<v-app-bar-title>
 					<v-btn
-						class="text-none"
+						class="text-none px-2"
 						color="orange-accent-1"
 						to="/nks"
 						variant="text"
 					>
-						<span class="text-brown-darken-4">
+						<span
+							class="text-brown-darken-4 text-subtitle-1 font-weight-medium"
+						>
 							Survei NKS PW-IASS Bangkalan
 						</span>
 					</v-btn>
@@ -18,9 +20,10 @@
 				<template v-slot:append>
 					<v-btn
 						v-show="isAuthenticate && !isAuthRoutes"
-						class="text-none font-weight-regular me-4"
-						variant="outlined"
+						class="text-none font-weight-regular me-4 text-orange-lighten-5"
+						variant="elevated"
 						@click="logout"
+						color="orange-darken-4"
 					>
 						<v-icon icon="mdi-logout" />
 						Logout
@@ -28,7 +31,7 @@
 				</template>
 			</v-app-bar>
 
-			<v-main>
+			<v-main class="bg-orange-lighten-5">
 				<router-view />
 				<notify-snackbar />
 				<notify-confirm />
