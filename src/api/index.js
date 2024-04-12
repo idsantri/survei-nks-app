@@ -2,7 +2,9 @@ import axios from 'axios';
 import { notifyError } from '@/utils/notify';
 
 const url =
-	process.env.NODE_ENV == 'development' ? 'http://localhost:8080' : 'api';
+	process.env.NODE_ENV == 'development'
+		? 'http://localhost:8080'
+		: 'https://survei-nks.idsantri.my.id';
 const api = axios.create({ baseURL: url });
 api.defaults.withCredentials = true;
 
