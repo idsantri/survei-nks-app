@@ -66,7 +66,7 @@
 		</v-card-item>
 		<v-card-item class="py-0">
 			<v-table density="compact">
-				<tbody>
+				<tbody class="text-orange-darken-4">
 					<tr>
 						<td>Tanggal NKS</td>
 						<td>
