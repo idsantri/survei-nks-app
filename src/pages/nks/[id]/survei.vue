@@ -135,45 +135,48 @@
 			<v-table class="text-orange-darken-4" density="comfortable">
 				<thead>
 					<tr>
-						<th class="text-left">Subyek</th>
-						<th class="text-center">Poin</th>
+						<th class="px-1 text-left">Subyek</th>
+						<th class="px-1 text-center">Poin</th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-5"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-5"
 						>
 							Calon Lokasi 1
 						</th>
 						<th
-							class="text-center text-orange-darken-4 bg-orange-lighten-5"
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-5"
 						>
 							Nilai
 						</th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-4"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-4"
 						>
 							Calon Lokasi 2
 						</th>
 						<th
-							class="text-center text-orange-darken-4 bg-orange-lighten-4"
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-4"
 						>
 							Nilai
 						</th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-3"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-3"
 						>
 							Calon Lokasi 3
 						</th>
 						<th
-							class="text-center text-orange-darken-4 bg-orange-lighten-3"
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-3"
 						>
 							Nilai
 						</th>
+						<th class="px-1 text-left">Keterangan</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in survei" :key="item.id">
-						<td class="">{{ item.subyek }}</td>
-						<td class="text-center">{{ item.poin }}</td>
-						<td class="">
+						<td class="px-1">{{ item.subyek }}</td>
+						<td class="px-2 text-center font-weight-bold">
+							{{ item.poin }}
+						</td>
+						<td class="px-1">
 							<v-rating
 								v-model="item.lokasi_1"
 								class=""
@@ -189,10 +192,12 @@
 							>
 							</v-rating>
 						</td>
-						<td class="text-center">
+						<td
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-5"
+						>
 							{{ item.poin * item.lokasi_1 }}
 						</td>
-						<td class="">
+						<td class="px-1">
 							<v-rating
 								v-model="item.lokasi_2"
 								class=""
@@ -207,10 +212,12 @@
 								"
 							></v-rating>
 						</td>
-						<td class="text-center">
+						<td
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-4"
+						>
 							{{ item.poin * item.lokasi_2 }}
 						</td>
-						<td class="">
+						<td class="px-1">
 							<v-rating
 								v-model="item.lokasi_3"
 								class=""
@@ -225,45 +232,51 @@
 								"
 							></v-rating>
 						</td>
-						<td class="text-center">
+						<td
+							class="px-1 text-center text-orange-darken-4 bg-orange-lighten-3"
+						>
 							{{ item.poin * item.lokasi_3 }}
+						</td>
+						<td class="px-1">
+							{{ item.keterangan }}
 						</td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
-						<th class="text-left"></th>
-						<th class="text-center"></th>
+						<th class="px-1 text-left"></th>
+						<th class="px-1 text-center"></th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-5"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-5"
 						>
 							Total Poin
 						</th>
 						<th
-							class="font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-5"
+							class="px-1 font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-5"
 						>
 							{{ getTotal('lokasi_1') }}
 						</th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-4"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-4"
 						>
 							Total Poin
 						</th>
 						<th
-							class="font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-4"
+							class="px-1 font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-4"
 						>
 							{{ getTotal('lokasi_2') }}
 						</th>
 						<th
-							class="text-left text-orange-darken-4 bg-orange-lighten-3"
+							class="px-1 text-left text-orange-darken-4 bg-orange-lighten-3"
 						>
 							Total Poin
 						</th>
 						<th
-							class="font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-3"
+							class="px-1 font-weight-black text-subtitle-1 text-center text-orange-darken-4 bg-orange-lighten-3"
 						>
 							{{ getTotal('lokasi_3') }}
 						</th>
+						<th class="px-1 text-center"></th>
 					</tr>
 				</tfoot>
 			</v-table>

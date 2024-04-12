@@ -6,6 +6,15 @@
 			class="bg-orange-lighten-4 text-orange-darken-4"
 			elevation="6"
 		>
+			<v-img
+				class="text-center mx-auto ma-6 mb-0"
+				:width="100"
+				aspect-ratio="1/1"
+				cover
+				src="../assets/logo.png"
+				alt="logo"
+				style="border: 2px solid orange; border-radius: 50%"
+			/>
 			<v-card-item>
 				<v-card-title class="text-center">Login</v-card-title>
 
