@@ -44,7 +44,7 @@
 						<v-btn
 							@click="editNks(n)"
 							color="orange-darken-4"
-							variant=""
+							variant="text"
 							icon="mdi-pencil"
 							class="me-3"
 						>

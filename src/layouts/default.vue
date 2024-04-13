@@ -41,6 +41,7 @@
 </template>
 
 <script setup>
+import { ref, watchEffect } from 'vue';
 import auth from '@/stores/auth';
 import { useRouter, useRoute } from 'vue-router';
 import NotifySnackbar from '@/components/NotifySnackbar.vue';
@@ -48,7 +49,16 @@ import NotifyConfirm from '@/components/NotifyConfirm.vue';
 import { notifyConfirm as dialog } from '@/utils/notify';
 
 const router = useRouter();
-const route = useRoute();
+const route = useRoute(); // Memindahkan useRoute ke sini
+const isAuthenticate = ref(false); // Membuat isAuthenticate reaktif
+const isAuthRoutes = ref(false); // Membuat isAuthRoutes reaktif
+
+// Gunakan watchEffect untuk memastikan isAuthenticate dan isAuthRoutes selalu up-to-date
+watchEffect(() => {
+	const authRoutes = ['/register', '/login', '/forgot', '/reset', '/verify'];
+	isAuthRoutes.value = authRoutes.includes(route.fullPath);
+	isAuthenticate.value = auth().getToken && auth().getToken.length > 0;
+});
 
 async function logout() {
 	const confirmed = await dialog('Keluar dari aplikasi?');
@@ -56,11 +66,5 @@ async function logout() {
 		auth().$reset();
 		router.push('/login');
 	}
-	return;
 }
-
-const authRoutes = ['/register', '/login', '/forgot', '/reset', '/verify'];
-const isAuthRoutes = authRoutes.includes(route.fullPath);
-const isAuthenticate =
-	auth().getToken && auth().getToken.length > 0 ? true : false;
 </script>
